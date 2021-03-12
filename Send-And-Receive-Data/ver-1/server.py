@@ -9,5 +9,6 @@ while True:
     #print(f"Connection form {address} has been established!")
     print(f" La Coneccion desde {address} se ha establecido!")
     clientsocket.send(bytes("binevenido al servidor!", "utf-8"))
+    clientsocket.close()
 
  
