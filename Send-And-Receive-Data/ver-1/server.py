@@ -1,5 +1,10 @@
 import socket
 
+msg = "Bienvenido al servidor sputyfay!"
+print(f'{len(msg):<20}' +msg)
+
+#version1
+"""
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((socket.gethostname(), 5555))#gethostname -> localhost
 s.listen(5)
@@ -10,5 +15,6 @@ while True:
     print(f" La Coneccion desde {address} se ha establecido!")
     clientsocket.send(bytes("binevenido al servidor!", "utf-8"))
     clientsocket.close()
+"""
 
  

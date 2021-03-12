@@ -1,4 +1,5 @@
-import socket
+
+"""import socket
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((socket.gethostname(), 5555))
@@ -10,4 +11,4 @@ while True:
         break
     full_msg += msg.decode("utf-8")
 
-print(msg.decode("utf-8"))
+print(msg.decode("utf-8"))"""
