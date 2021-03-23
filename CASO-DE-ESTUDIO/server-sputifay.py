@@ -18,7 +18,9 @@ def handle_client(connexion, addres):
     while True:
         data = connexion.recv(SIZE).decode(FORMAT)
         #data = connexion.send(SIZE).decode(FORMAT)
+        print(data)
         data = data.split("@")
+        print(data)
         cmd_message = data[0]
         #print(cmd)
 
@@ -46,7 +48,21 @@ def handle_client(connexion, addres):
             pass
 
         elif cmd_message == "DELETE":
-            pass
+            #pass
+            files = os.listdir(SERVER_DATA_PATH)
+            send_data ="OK@"
+            filename = data[1]
+
+            if len(files) == 0:
+                send_data += "NO HAY ARCHIVOS PARA ELEMINAR"
+            else:
+                if filename in files:
+                    os.system(f"rm {SERVER_DATA_PATH}/{filename}")
+                    send_data += "Archivo Borrado."
+                else:
+                    send_data += " Archivo No Encontrado"
+            connexion.send(send_data.encode(FORMAT))
+
 
     print(f"[DESCONECTADO] {addres} desconectado")
             

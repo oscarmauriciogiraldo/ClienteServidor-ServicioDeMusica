@@ -1,6 +1,8 @@
 import socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((socket.gethostname(), 5555))
+server_address = ('25.100.99.140', 5555)
+#s.connect((socket.gethostname(), 5555))
+s.connect(server_address)
 
 complete_info = ''
 

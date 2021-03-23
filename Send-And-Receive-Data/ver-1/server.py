@@ -1,6 +1,9 @@
 import socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((socket.gethostname(), 5555))#gethostname -> localhost
+#direccion servidor
+sever_address = ('25.100.99.140', 5555)
+#s.bind((socket.gethostname(), 5555))#gethostname -> localhost
+s.bind(sever_address)
 s.listen(5)
 
 while True:
