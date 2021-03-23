@@ -1,6 +1,8 @@
 #biblioteca del sistema operativo
 import os
 import socket
+
+from pygame import mixer
 #import threading
 
 #IP =  socket.gethostbyname(socket.gethostname())
@@ -77,6 +79,12 @@ def main():
             socket_client.send(f"{cmd}@{data[1]}".encode(FORMAT))
 
         elif cmd == "PLAY":
+            mixer.init()
+            cancion=str(input("seleccione la cancion: "))
+            mixer.music.load(cancion)
+            mixer.music.set_volume(0.7)
+            mixer.music.play()
+
             while True:
                 print('Pulsa p para detenter la cancion')
                 print('Pulsa r para reanudar la cancion')
@@ -84,7 +92,7 @@ def main():
                 print('Pulsa s para salir')
 
                 opcion = input(">>> ")
-                """
+                """"""
                 if opcion=="p":
                     mixer.music.pause()
                 elif opcion=="r":
@@ -98,7 +106,7 @@ def main():
                     mixer.music.load(cancion)
                     mixer.music.set_volume(0.7)
                     mixer.music.play()
-                """
+                
 
     
     print("Desconectado del servidor")
