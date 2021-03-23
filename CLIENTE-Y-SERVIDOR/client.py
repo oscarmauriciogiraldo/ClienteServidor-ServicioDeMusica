@@ -16,7 +16,7 @@ socket = context.socket(zmq.REQ)
     que escucha el pueto 5555 de localhost
     
     todo esto corre de manera local"""
-socket.connect("tcp://localhost:5555")
+socket.connect("tcp://25.100.99.140:5555")
 #######bloque para crear el socket ##############
 
 for i in range(10):

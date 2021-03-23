@@ -3,6 +3,8 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = ('25.12.94.111', 5555)
 #s.connect((socket.gethostname(), 5555))
 s.connect(server_address)
+#socket.connect("tcp://localhost:5555")
+s.connect("tcp://localhost:5555")
 
 complete_info = ''
 
