@@ -3,9 +3,11 @@ import os
 import socket
 import threading
 
-IP =  socket.gethostbyname(socket.gethostname())
+#IP =  socket.gethostbyname(socket.gethostname())
 PORT = 5555
-ADDR = (IP, PORT)
+#server address
+#ADDR = (IP, PORT)
+ADDR = ('localhost', PORT)
 SIZE = 1024
 FORMAT = "utf-8"
 SERVER_DATA_PATH = "server-data"
@@ -18,9 +20,9 @@ def handle_client(connexion, addres):
     while True:
         data = connexion.recv(SIZE).decode(FORMAT)
         #data = connexion.send(SIZE).decode(FORMAT)
-        print(data)
+        ##print(data)
         data = data.split("@")
-        print(data)
+        ##print(data)
         cmd_message = data[0]
         #print(cmd)
 
@@ -45,7 +47,16 @@ def handle_client(connexion, addres):
             connexion.send(send_data.encode(FORMAT))
 
         elif cmd_message == "UPLOAD":
-            pass
+            #pass
+            name = data[1]
+            text = data[2]
+
+            filepath = os.path.join(SERVER_DATA_PATH, name)
+            with open(filepath, "w") as f:
+                f.write(text)
+            
+            send_data = "OK@Descarga Completa."
+            connexion.send(send_data.encode(FORMAT))
 
         elif cmd_message == "DELETE":
             #pass
@@ -63,6 +74,21 @@ def handle_client(connexion, addres):
                     send_data += " Archivo No Encontrado"
             connexion.send(send_data.encode(FORMAT))
 
+        elif cmd_message == "Descargar":
+            pass
+             ## UPLOAD@Filename@text
+            """
+            path = data[1]
+            with open(f"{path}", "r") as f:
+                text = f.read()
+
+            ## [client_data, data.txt]
+            filename = path.split("/")[-1]
+            send_data = f"{cmd_message}@{filename}@{text}"
+            socket_server.send(send_data.encode(FORMAT))"""
+            """"""
+            
+            
 
     print(f"[DESCONECTADO] {addres} desconectado")
             

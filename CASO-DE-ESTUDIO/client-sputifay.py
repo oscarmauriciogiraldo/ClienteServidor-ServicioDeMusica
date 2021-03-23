@@ -3,9 +3,10 @@ import os
 import socket
 #import threading
 
-IP =  socket.gethostbyname(socket.gethostname())
+#IP =  socket.gethostbyname(socket.gethostname())
 PORT = 5555
-ADDR = (IP, PORT)
+#ADDR = (IP, PORT)
+ADDR = ('localhost', PORT)
 SIZE = 1024
 FORMAT = "utf-8"
 SERVER_DATA_PATH = "server-data"
@@ -40,6 +41,7 @@ def main():
             socket_client.send(cmd.encode(FORMAT))
 
         ## upload 
+        ## para descargar 
         elif cmd == "UPLOAD":
             ## UPLOAD@Filename@text
 

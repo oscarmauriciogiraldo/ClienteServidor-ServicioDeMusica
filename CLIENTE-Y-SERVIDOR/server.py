@@ -14,6 +14,7 @@ socket = context.socket(zmq.REP)
 #se asocia el socket con el puerto 5555 de la interfaz de red por defecto
 # "*" usa la interfaz por defecto con el protocolo  tcp
 socket.bind("tcp://25.100.99.140:5555")
+#socket.bind("tcp://*:5555")
 
 print("antes de comenzar a atender")
 while True:
