@@ -10,7 +10,8 @@ PORT = 5555
 ADDR = ('localhost', PORT)
 SIZE = 1024
 FORMAT = "utf-8"
-SERVER_DATA_PATH = "server-data"
+#SERVER_DATA_PATH = "server-data"
+SERVER_DATA_PATH = "client-data"
 
 #RECEPTOR DE SOLICITUDES 
 def handle_client(connexion, addres):
@@ -45,9 +46,15 @@ def handle_client(connexion, addres):
             else:
                 send_data += "\n".join(f for f in files)
             connexion.send(send_data.encode(FORMAT))
+        
 
+        ####################################################################################
+        ##################################################################################
         elif cmd_message == "UPLOAD":
             #pass
+            # recibe el archivo
+            ################################################################
+            """"""
             name = data[1]
             text = data[2]
 
@@ -55,8 +62,26 @@ def handle_client(connexion, addres):
             with open(filepath, "w") as f:
                 f.write(text)
             
+            # recibe el archivo
+            
+            """ ##############intento faccido##########################"""
+            """
+            path = data[1]
+            with open(f"{path}", "r") as f:
+                text = f.read()
+
+            ## [client_data, data.txt]
+            filename = path.split("/")[-1]
+            #send_data = f"{cmd}@{filename}@{text}"
+            send_data = f"{cmd_message}@{filename}@{text}"
+            #socket_server.send(send_data.encode(FORMAT))
+            connexion.send(send_data.encode(FORMAT))"""
+            ################################################################
+
             send_data = "OK@Descarga Completa."
             connexion.send(send_data.encode(FORMAT))
+        ####################################################################################
+        ##################################################################################
 
         elif cmd_message == "DELETE":
             #pass

@@ -9,7 +9,8 @@ PORT = 5555
 ADDR = ('localhost', PORT)
 SIZE = 1024
 FORMAT = "utf-8"
-SERVER_DATA_PATH = "server-data"
+#SERVER_DATA_PATH = "server-data"
+SERVER_DATA_PATH = "client-data"
 
 def main():
     socket_client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -40,11 +41,16 @@ def main():
         elif cmd == "PLAYLIST":
             socket_client.send(cmd.encode(FORMAT))
 
+        ####################################################################################
+        ##################################################################################
         ## upload 
         ## para descargar 
         elif cmd == "UPLOAD":
+
+            ################################################################
             ## UPLOAD@Filename@text
 
+            """#"""
             path = data[1]
             with open(f"{path}", "r") as f:
                 text = f.read()
@@ -53,7 +59,19 @@ def main():
             filename = path.split("/")[-1]
             send_data = f"{cmd}@{filename}@{text}"
             socket_client.send(send_data.encode(FORMAT))
-        ## upload 
+            #socket_client.recv(send_data.encode(FORMAT))
+            ## upload 
+            ################################################################
+            """ ############## intento fallido ############# """
+            """
+            name = data[1]
+            text = data[2]
+
+            filepath = os.path.join(SERVER_DATA_PATH, name)
+            with open(filepath, "w") as f:
+                f.write(text)"""
+        ####################################################################################
+        ##################################################################################
 
         elif cmd == "BORRAR":
             socket_client.send(f"{cmd}@{data[1]}".encode(FORMAT))
